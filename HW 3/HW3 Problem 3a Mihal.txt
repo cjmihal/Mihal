@@ -1,0 +1,43 @@
+PWR Single Pin 							$ This is the title line
+1 1 -10.41 -1 -10 20 imp:n=1			$ Cell identifier, material, density, surface location, use neutrons
+2 0 1 -2 -10 20 imp:n=1					$ Cell identifier, material, density, surface location, use neutrons
+3 3 -6.55 2 -3 -10 20 imp:n=1			$ Cell identifier, material, density, surface location, use neutrons
+4 4 -0.7 3 -5 6 -7 8 -10 20 imp:n=1		$ Cell identifier, material, density, surface location, use neutrons
+5 0 5:-6:7:-8:10:-20 imp:n=0			$ Cell identifier, material, density, surface location, use neutrons
+										$ Required space, surface cards below
+c Rods dimensions						$ Describes the lines that follow 
+1 cz 0.41								$ Creates a cylinder of radius .41 centered on z-axis
+2 cz 0.42								$ Creates a cylinder of radius .42 centered on z-axis
+3 cz 0.48								$ Creates a cylinder of radius .48 centered on z-axis
+c Basic lattice cell					$ Describes the lines that follow
+*5 px 0.63								$ Creates a reflective plane on x=.63
+*6 px -0.63								$ Creates a reflective plane on x=-.63
+*7 py 0.63								$ Creates a reflective plane on y=.63
+*8 py -0.63								$ Creates a reflective plane on y=-.63
+c Axial limits							$ Describeses the lines that follow
+*10 pz 200.0							$ Creates a reflective plane on z=200
+*20 pz -200.0							$ Creates a reflective plane on Z=-200
+										$ Required space, material cards below
+c Material 1							$ Labels the following as Material 1 for reference
+m1 8016.73c 2.0							$ material 1, oxygen
+92235.73c 0.05							$ material 1, U235
+92238.73c 0.95							$ material 1, U238
+c Material 4							$ Labels the following as Material 4 for reference
+m4 1001.71c 2							$ material 4, Hydrogen
+8016.71c 1								$ material 4, oxygen
+mt4 lwtr.04t							$ This tells m4 to reference a material card
+c Material 3							$ This labels the following as Material 3 for reference
+m3 40000.58c 1.							$ elemental Zirconium
+c ||{ Tallies ||{						$ Labels the tallies coming below
+fc4 Tally 4								$ Prints the comment Tally 4 for this tally
+f4:n 1 3 4								$ Tally for length estimate of cells 1 3 4 neutron flux 
+e4:n 1e-6 1. 20.						$ tallies neutrons as a function of energy for each bin
+fc14 Tally 14							$ prints the comment Tally 14 for this tally
+f14:n 1									$ Tally for average flux in a cell
+fm14 (1 1 (-2) (-6))					$ tally mutiplier, -2 for abs cross section, -6 for total fission cross section
+c ||||||||{								$ ??? it is a comment line
+kcode 1000 1.00 50 250					$ specifies mcnp criticality used for calculating keff, 1000 sources per cycles, initial guess for keff, number of cycles to be skipped, number of source points to allocate storage
+ksrc 0. 0. 0.							$ k source at origin
+print									$ prints all default tables in output file
+mode n									$ this tells the program to track neutrons
+VOL 3j 345.510821 j						$ cell vol
