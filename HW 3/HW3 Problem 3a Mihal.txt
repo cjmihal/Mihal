@@ -26,6 +26,7 @@ c Material 4							$ Labels the following as Material 4 for reference
 m4 1001.71c 2							$ material 4, Hydrogen
 8016.71c 1								$ material 4, oxygen
 mt4 lwtr.04t							$ This tells m4 to reference a material card
+c -------------- use S(alpha, beta) thermal neutron cross-sections --------------
 c Material 3							$ This labels the following as Material 3 for reference
 m3 40000.58c 1.							$ elemental Zirconium
 c ||{ Tallies ||{						$ Labels the tallies coming below
